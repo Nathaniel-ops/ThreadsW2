@@ -26,8 +26,8 @@ public class StockReader extends Thread {
 
     private  StockServer.Stock getRandomStock() {
         StockServer.Stock[] stocks = StockServer.Stock.values();
-         int index = (int)(Math.random() * stocks.length);
-            return stocks[index];
-        // שינוי של בדיקה
-}
+        int index = (int) (Math.random() * stocks.length);
+        return stocks[index];
+
+    }
 }

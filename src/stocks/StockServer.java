@@ -14,7 +14,7 @@ public class StockServer {
 		GOOGLE
 	}	
 	
-	public int GetStock(Stock stock) {
+	public synchronized int GetStock(Stock stock) {
 		switch(stock) {
 		case MICROSOFT:
 			return microsoftValue;
@@ -26,6 +26,23 @@ public class StockServer {
 			throw new InvalidParameterException("no such stock type");
 		}
 	}
-	
-}
+	public synchronized void UpdateStock(Stock stock, int value) {
+		if (value < 100 || value > 500) {
+			throw new InvalidParameterException("Stock value must be between 100 and 500");
+		}
 
+		switch (stock) {
+			case MICROSOFT:
+				microsoftValue = value;
+				break;
+			case APPLE:
+				appleValue = value;
+				break;
+			case GOOGLE:
+				googleValue = value;
+				break;
+			default:
+				throw new InvalidParameterException("no such stock type");
+		}
+	}
+}
